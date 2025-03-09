@@ -1,0 +1,166 @@
+body {
+    background-color: #f8f9fa;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
+
+
+main {
+    flex-grow: 1;
+}
+
+/* Ensure body and html take the full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    background-color: #343a40; /* dark background */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Push it to the bottom */
+}
+
+.container {
+    max-width: 1500px;
+}
+
+.card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar-brand, .nav-link {
+    color: #ffffff !important;
+}
+
+.nav-link:hover {
+    color: #d1d1d1 !important;
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background-color: #343a40;
+    margin: 20px 0;
+}
+
+.btnMain {
+    background-color: #000000;
+    border: none;
+}
+
+.btnMain:hover {
+    background-color: #303133;
+
+}
+
+
+.btnMain.active {
+    background-color: #31353f; /* This will apply after click and remain */
+}
+
+.btn-lg-custom {
+    width: 100%;
+}
+
+.uploadAlbumMainText {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Default: Show 3 items per row for larger screens */
+#genresList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    justify-content: center;
+    /*padding-bottom: 50px;*/
+}
+
+/* For small screens (mobile) - Show only 2 items per row */
+@media (max-width: 590px) {
+    #genresList {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+    }
+}
+
+/* For very small screens (portrait mobile) - Show only 1 item per row */
+@media (max-width: 430px) {
+    #genresList {
+        grid-template-columns: 1fr; /* 1 item per row */
+    }
+
+}
+
+/* Style for the genre cards to make them the same size */
+.genre-card {
+    width: 180px; /* Set a fixed width for each card */
+    height: 250px; /* Set a fixed height for all cards */
+    flex-direction: column;
+    /*justify-content: space-between;*/
+    text-align: center; /* Center the content in the card */
+
+}
+
+.genre-card img {
+    height: 150px; /* Fixed height for images */
+    object-fit: cover; /* Maintain image aspect ratio while filling the space */
+    width: 100%;
+}
+
+.genre-card-body {
+    padding: 10px;
+    text-align: center;
+    /*flex-grow: 2;*/
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#allAlbums {
+    display: flex; /* Enable flexbox on the container */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items at the top */
+    align-items: center; /* Horizontally center content */
+    text-align: center; /* Center text inside the elements */
+    width: 100%;
+}
+
+#genresList {
+    /*flex-wrap: wrap; !* Allow items to wrap to the next line *!*/
+    /*justify-content: center; !* Horizontally center the items *!*/
+    gap: 15px; /* Space between items */
+    width: 100%; /* Ensure the container takes full width */
+    padding-bottom: 50px; /* Prevents footer from sticking too close */
+}
+
+.container {
+    padding-bottom: 60px; /* Padding at the bottom to prevent overlap with footer */
+}
+
+#saveButton{
+    background-color: #9f1c1c;
+    border: none;
+    text-align: center;
+    font-weight: 800;
+}
+#saveButton:hover {
+    background-color: #801616;
+}
+
+.main-content {
+    flex: 1; /* Pushes the footer down */
+}

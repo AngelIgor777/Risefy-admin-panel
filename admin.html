@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Upload Music</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" id="adminPanelText">Админ панель</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Статистика дохода</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Загрузка альбомов</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Статистика прослушиваний</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container mt-5">
+    <div id="mainButtons" class="d-flex flex-column flex-md-row justify-content-between">
+        <!-- Left Button -->
+        <button type="button" class="btn btn-primary btn-lg btnMain mb-3 mb-md-0 w-100 w-md-auto ms-md-2"
+                id="addAlbumsButton">
+            Загрузить альбом
+        </button>
+        <!-- Right Button -->
+        <button type="button" class="btn btn-primary btn-lg btnMain w-100 w-md-auto ms-md-2" id="allAlbumsButton">
+            Все альбомы
+        </button>
+    </div>
+</div>
+
+<div class="container main-content" id="uploadForm" style="display: block;">
+    <div class="card">
+
+        <br>
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="albumName" class="form-label uploadAlbumMainText">Название альбома</label>
+                <input type="text" class="form-control" id="albumName" name="albumName" required>
+            </div>
+            <div class="mb-3">
+                <label for="albumCover" class="form-label uploadAlbumMainText">Обложка альбома</label>
+                <input type="file" class="form-control" id="albumCover" name="albumCover" accept="image/*" required>
+            </div>
+
+            <div id="musicList">
+                <div class="music-item mb-3">
+                    <label class="form-label uploadAlbumMainText">Содержание</label>
+
+                    <ol>
+                        <li>
+                            <label>
+                                <input type="text" class="form-control mb-2" name="musicAuthor[]" placeholder="Автор"
+                                       required>
+                            </label>
+                            <label>
+                                <input type="text" class="form-control mb-2" name="musicName[]" placeholder="Название"
+                                       required>
+                            </label>
+                            <br>
+                            <label class="uploadAlbumMainText">Трек
+                                <input type="file" class="form-control" name="musicFile[]"
+                                       accept="audio/*" required>
+                            </label>
+                            <br>
+                            <br>
+                            <label class="uploadAlbumMainText">Обложка
+                                <input type="file" class="form-control" name="musicFile[]"
+                                       accept="image/*" required>
+                            </label>
+                            <br>
+                            <label>
+                                <button type="button" class="btn btn-danger btn-sm mt-2"
+                                        onclick="removeMusicField(this)">
+                                    Delete
+                                </button>
+                            </label>
+
+                            <hr>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div>
+                <label class="uploadAlbumMainText">Добавить количество полей <br>
+                    <input type="number" class="form-control" id="albumSize" name="albumSize">
+                    <br>
+
+                    <!-- Wrapper for the buttons with flexbox -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button type="button" class="btn btn-secondary mb-3" onclick="addSeveralMusicFields()">
+                            Добавить несколько полей
+                        </button>
+                        <div class="vr mx-3"></div> <!-- Vertical line -->
+                        <button type="button" class="btn btn-secondary mb-3" onclick="addMusicField()">Добавить поле
+                        </button>
+                    </div>
+                </label>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary w-100" id="saveButton">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="container mt-5 flex-grow-1" id="allAlbums" style="display: none">
+    <h1 class="text-center">Альбомы</h1>
+    <div id="genresList" class="row">
+    </div>
+</div>
+
+
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+        <p class="mb-2">Админ панель</p>
+        <p>&copy; 2025 Risefy. Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
