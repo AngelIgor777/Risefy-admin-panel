@@ -167,3 +167,7 @@ hr {
 .main-content {
     flex: 1; /* Pushes the footer down */
 }
+
+#loading p {
+    font-size: 20px;
+}
