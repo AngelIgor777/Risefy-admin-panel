@@ -1,7 +1,5 @@
 body {
     background-color: #f8f9fa;
-    /*display: flex;*/
-    /*flex-direction: column;*/
 }
 
 
@@ -54,6 +52,10 @@ hr {
     margin: 20px 0;
 }
 
+#uploadAlbumSeparator {
+    height: 6px;
+}
+
 .btnMain {
     background-color: #000000;
     border: none;
@@ -95,7 +97,7 @@ hr {
 }
 
 /* For very small screens (portrait mobile) - Show only 1 item per row */
-@media (max-width: 430px) {
+@media (max-width: 370px) {
     #genresList {
         grid-template-columns: 1fr; /* 1 item per row */
     }
@@ -104,7 +106,7 @@ hr {
 
 /* Style for the genre cards to make them the same size */
 .genre-card {
-    width: 180px; /* Set a fixed width for each card */
+    width: 140px; /* Set a fixed width for each card */
     height: 250px; /* Set a fixed height for all cards */
     flex-direction: column;
     /*justify-content: space-between;*/
@@ -151,12 +153,13 @@ hr {
     padding-bottom: 60px; /* Padding at the bottom to prevent overlap with footer */
 }
 
-#saveButton{
+#saveButton {
     background-color: #9f1c1c;
     border: none;
     text-align: center;
     font-weight: 800;
 }
+
 #saveButton:hover {
     background-color: #801616;
 }
