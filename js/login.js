@@ -1,3 +1,6 @@
+import CONFIG from './prod-config.js';
+
+
 function parseJwt(token) {
     try {
         const base64Url = token.split('.')[1];
@@ -24,7 +27,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     };
 
     try {
-        const response = await fetch("https://risefy-music.ru/auth/sign-in", {
+        const response = await fetch(`${CONFIG.API_BASE_URL}/auth/sign-in`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

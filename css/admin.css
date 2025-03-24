@@ -104,19 +104,24 @@ hr {
 
 }
 
+
 /* Style for the genre cards to make them the same size */
 .genre-card {
     width: 140px; /* Set a fixed width for each card */
-    height: 250px; /* Set a fixed height for all cards */
+    height: 330px; /* Set a fixed height for all cards */
+    display: flex;
     flex-direction: column;
-    /*justify-content: space-between;*/
+    justify-content: space-between;
     text-align: center; /* Center the content in the card */
-
+    padding: 5px; /* Adds some space inside */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds some depth */
+    border-radius: 10px;
 }
 
 .genre-card img {
     height: 150px; /* Fixed height for images */
     object-fit: cover; /* Maintain image aspect ratio while filling the space */
+    border-radius: 10px;
     width: 100%;
 }
 
@@ -127,7 +132,7 @@ hr {
 }
 
 .card-title {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     font-weight: bold;
     margin-top: 10px;
 }
@@ -154,15 +159,11 @@ hr {
 }
 
 #saveButton {
-    background-color: #9f1c1c;
     border: none;
     text-align: center;
     font-weight: 800;
 }
 
-#saveButton:hover {
-    background-color: #801616;
-}
 
 .main-content {
     flex: 1; /* Pushes the footer down */
@@ -171,3 +172,411 @@ hr {
 #loading p {
     font-size: 20px;
 }
+
+
+/*for  tracks viewing after click on genre card*/
+/* Modal Styling */
+#modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 1200px;
+    height: auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: none; /* Initially hidden */
+    z-index: 1001;
+}
+
+/* Modal Background Overlay */
+#modal::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+/* Close Button */
+#modal button {
+    background: #000000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background 0.3s;
+}
+
+#modal button:hover {
+    background: #303133;
+}
+
+/* Track List - Centered Column Layout */
+#trackList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+/* Individual Track Item */
+.track-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 12px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 480px;
+    width: 100%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.track-item:hover {
+    transform: scale(1.03);
+}
+
+/* Cover Image */
+.track-cover {
+    width: 55px;
+    height: 55px;
+    border-radius: 6px;
+    margin-right: 12px;
+}
+
+/* Track Info */
+.track-info {
+    flex-grow: 1;
+    text-align: left;
+    overflow: hidden;
+}
+
+.track-info h5 {
+    margin: 3px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.track-info p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Track Actions (Audio + Delete Button) */
+.track-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Audio Player */
+.audio-player {
+    width: 120px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    min-width: 120px;
+}
+
+/* Delete Button */
+.delete-track-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 7px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-track-btn i {
+    font-size: 16px;
+}
+
+.delete-track-btn:hover {
+    background: #c82333;
+}
+
+/* Pagination */
+#pagination {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.page-info {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    background: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+/* Messages */
+.message {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.error {
+    background: #f8d7da;
+    color: #544b4b;
+}
+
+/* Navigation Buttons */
+.navigationButtonTracks {
+    background: #000000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.navigationButtonTracks:hover {
+    background: #303133;
+    transform: scale(1.05);
+}
+
+.navigationButtonTracks:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.trackTitle {
+    font-weight: bold;
+}
+
+
+/*genre change button*/
+.change-cover-btn {
+    background-color: #000000;
+    color: white;
+    font-size: 12px;
+    border: none;
+    text-align: unset;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.2s ease-in-out;
+    margin-top: auto; /* Pushes the button to the bottom */
+    align-self: center; /* Centers it horizontally */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stacks buttons vertically */
+    align-items: center; /* Centers them */
+    gap: 5px; /* Adds space between buttons */
+    margin-top: auto; /* Pushes buttons to the bottom */
+}
+
+.change-cover-btn:hover {
+    background-color: #303133;
+}
+
+
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 100%;
+}
+
+/* Close Button */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-btn:hover {
+    background-color: #303133;
+}
+
+/* Form Input Fields */
+input[type="text"], input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    #modal {
+        width: 95%;
+        height: auto;
+    }
+
+    #trackList {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller cards */
+    }
+
+    .track-info h5 {
+        font-size: 10px;
+    }
+
+    .track-info p {
+        font-size: 10px;
+    }
+
+    .navigationButtonTracks {
+        padding: 8px 12px;
+    }
+
+    .card-title {
+        font-size: 0.8rem;
+        margin-top: 10px;
+    }
+
+    .modal-content {
+        width: 90%; /* Make modal content smaller on phones */
+        padding: 15px; /* Less padding for mobile */
+    }
+
+    .close-btn {
+        font-size: 24px; /* Smaller close button on mobile */
+    }
+
+    .submit-btn {
+        width: 100%; /* Full width for the button on mobile */
+    }
+
+    input[type="text"], input[type="file"] {
+        padding: 10px; /* Smaller padding for mobile */
+    }
+
+    h2 {
+        font-size: 18px; /* Smaller header text on mobile */
+        text-align: center;
+    }
+
+
+    .track-item {
+        padding: 10px 12px;
+        max-width: 380px;
+        width: 100%;
+    }
+
+    .track-cover {
+        width: 30px;
+        height: 30px;
+        margin-right: 4px;
+    }
+    .audio-player {
+        width: 100px;
+        height: 25px;
+        min-width: 120px;
+    }
+}
+
+/*delete-buttons*/
+.deleteButton {
+    background-color: #dc3545;
+}
+
+.deleteButton:hover {
+    background-color: #a52834;
+}
+
+
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
